@@ -7,36 +7,36 @@ function App() {
   const [history, setHistory] = useState([]);
 
   const categories = [
-    { 
-      name: 'Log Files', 
+    {
+      name: 'Log Files',
       dork: 'ext:log',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
       )
     },
-    { 
-      name: 'Config Files', 
+    {
+      name: 'Config Files',
       dork: 'ext:env OR ext:config OR ext:conf OR ext:yml OR ext:ini',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
       )
     },
-    { 
-      name: 'Admin Panels', 
+    {
+      name: 'Admin Panels',
       dork: 'inurl:admin OR inurl:login OR inurl:dashboard',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
       )
     },
-    { 
-      name: 'SQL Errors', 
+    {
+      name: 'SQL Errors',
       dork: '"SQL syntax" OR "MySQL Error" OR "Warning: mysql_connect"',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
       )
     },
-    { 
-      name: 'Exposed Docs', 
+    {
+      name: 'Exposed Docs',
       dork: 'ext:pdf OR ext:doc OR ext:docx OR ext:xls OR ext:xlsx OR ext:txt',
       icon: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg>
@@ -82,9 +82,9 @@ function App() {
       return;
     }
     setError('');
-    
+
     let finalQuery = `site:${domain} ${dork}`;
-    
+
     if (excludeDomains.trim() !== '') {
       const excludes = excludeDomains.split(',').map(d => d.trim()).filter(d => d !== '');
       if (excludes.length > 0) {
@@ -98,7 +98,7 @@ function App() {
       categoryName,
       query: finalQuery
     };
-    
+
     setHistory([newHistoryItem, ...history]);
 
     const url = `https://www.google.com/search?q=${encodeURIComponent(finalQuery)}`;
@@ -117,7 +117,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="w-full max-w-4xl flex flex-col items-center flex-grow">
-        
+
         {/* Header */}
         <div className="mb-12 text-center">
           <div className="inline-flex items-center justify-center p-3 bg-blue-500/10 rounded-2xl mb-4 border border-blue-500/20">
@@ -156,7 +156,7 @@ function App() {
                 }}
               />
             </div>
-            
+
             {/* Exclude Domain Input */}
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -179,7 +179,7 @@ function App() {
               />
             </div>
           </div>
-          
+
           {error && (
             <p className="mt-3 text-sm text-red-500 font-medium animate-pulse">{error}</p>
           )}
@@ -216,7 +216,7 @@ function App() {
             <span>🛠️</span> Cara Menggunakan
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
+
             {/* Step 1 */}
             <div className="bg-gray-900 border border-gray-800 rounded-2xl p-6 relative overflow-hidden flex flex-col items-center text-center">
               <div className="absolute -right-4 -top-6 text-8xl font-black text-blue-500/10 select-none">1</div>
@@ -263,7 +263,7 @@ function App() {
               <span>📋</span> Riwayat Pencarian
             </h2>
             {history.length > 0 && (
-              <button 
+              <button
                 onClick={clearHistory}
                 className="text-sm px-3 py-1.5 bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 rounded-lg transition-colors border border-red-500/20 flex items-center gap-1.5"
               >
@@ -271,7 +271,7 @@ function App() {
               </button>
             )}
           </div>
-          
+
           <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden shadow-sm">
             {history.length === 0 ? (
               <div className="p-8 text-center text-gray-500">
@@ -322,8 +322,8 @@ function App() {
             DISCLAIMER
           </h3>
           <p className="text-sm text-gray-400 leading-relaxed">
-            Alat ini disediakan secara eksklusif untuk tujuan <strong className="text-gray-300">edukasi dan pengujian keamanan yang etis (ethical hacking)</strong>. 
-            Penggunaan alat ini untuk menyerang target tanpa persetujuan tertulis dari pemilik sistem adalah tindakan ilegal. 
+            Alat ini disediakan secara eksklusif untuk tujuan <strong className="text-gray-300">edukasi dan pengujian keamanan yang etis (ethical hacking)</strong>.
+            Penggunaan alat ini untuk menyerang target tanpa persetujuan tertulis dari pemilik sistem adalah tindakan ilegal.
             Pengembang tidak bertanggung jawab atas penyalahgunaan atau kerusakan yang diakibatkan oleh penggunaan alat ini.
           </p>
         </div>
