@@ -1,4 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+const AdBanner = () => {
+  const bannerRef = useRef(null);
+
+  useEffect(() => {
+    if (bannerRef.current && !bannerRef.current.querySelector('script')) {
+      const script = document.createElement('script');
+      script.src = "//data527.click/js/responsive.js";
+      script.async = true;
+      bannerRef.current.appendChild(script);
+    }
+  }, []);
+
+  return (
+    <div className="flex justify-center w-full my-8 overflow-hidden bg-gray-900/30 rounded-xl border border-gray-800/30 p-2 items-center min-h-[106px]">
+      <ins
+        ref={bannerRef}
+        style={{ width: '728px', height: '90px', display: 'block' }}
+        data-width="728"
+        data-height="90"
+        className="l01a80dc23c"
+        data-domain="//data527.click"
+        data-affquery="/02b4e8cb52753e695aa1/01a80dc23c/?placementName=cyber_dork_banner"
+      ></ins>
+    </div>
+  );
+};
 
 function App() {
   const [domain, setDomain] = useState('');
@@ -132,6 +159,8 @@ function App() {
             Alat bantu analisis keamanan untuk menemukan informasi spesifik pada sebuah domain menggunakan teknik Google Dorks.
           </p>
         </div>
+
+        <AdBanner />
 
         {/* Input Section */}
         <div className="w-full max-w-md mb-12">
@@ -312,6 +341,10 @@ function App() {
           </div>
         </div>
 
+      </div>
+
+      <div className="w-full max-w-4xl mt-8">
+        <AdBanner />
       </div>
 
       {/* Footer Disclaimer */}
